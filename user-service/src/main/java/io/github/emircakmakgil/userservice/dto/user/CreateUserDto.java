@@ -13,5 +13,7 @@ public class CreateUserDto {
     private String phoneNumber;
     private String adress;
     private LocalDate birthDate;
+    private String email;
+    private String password;
 
 }

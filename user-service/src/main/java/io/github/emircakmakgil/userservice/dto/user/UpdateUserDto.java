@@ -16,4 +16,5 @@ public class UpdateUserDto {
     private String phoneNumber;
     private String adress;
     private LocalDate birthDate;
+    private String password;
 }
