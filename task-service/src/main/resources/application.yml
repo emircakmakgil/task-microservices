@@ -14,3 +14,9 @@ spring:
       ddlAuto: update
 server:
   port: 8081
+  servlet:
+     multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  file:
+   upload-dir: ./uploads
