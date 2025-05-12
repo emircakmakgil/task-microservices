@@ -83,15 +83,12 @@ public class Task {
     )
     private Set<Tag> tags;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-    private Set<Progress> progress;
 
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private Set<Attachment> attachments;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
-    private Set<Reminder> reminders;
+
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
