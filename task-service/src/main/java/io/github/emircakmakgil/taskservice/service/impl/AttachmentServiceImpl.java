@@ -1,6 +1,7 @@
 package io.github.emircakmakgil.taskservice.service.impl;
 
 import io.github.emircakmakgil.taskservice.dto.attachment.AttachmentListiningDto;
+import io.github.emircakmakgil.taskservice.dto.attachment.FileDataDto;
 import io.github.emircakmakgil.taskservice.entity.Attachment;
 import io.github.emircakmakgil.taskservice.entity.Task;
 import io.github.emircakmakgil.taskservice.mapper.AttachmentMapper;
@@ -125,5 +126,25 @@ public class AttachmentServiceImpl implements AttachmentService {
     public Attachment findById(UUID id) {
         return attachmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Attachment not found"));
+    }
+
+    @Override
+    public FileDataDto downloadFile(UUID id) {
+        Attachment attachment = attachmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Attachment not found"));
+        
+        try {
+            Path filePath = Paths.get(attachment.getFilePath());
+            byte[] data = Files.readAllBytes(filePath);
+            
+            return FileDataDto.builder()
+                    .fileName(attachment.getFileName())
+                    .contentType(attachment.getFileType())
+                    .data(data)
+                    .build();
+                    
+        } catch (IOException ex) {
+            throw new RuntimeException("Could not read file. Please try again!", ex);
+        }
     }
 }
