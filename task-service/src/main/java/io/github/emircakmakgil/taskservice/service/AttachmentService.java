@@ -1,6 +1,7 @@
 package io.github.emircakmakgil.taskservice.service;
 
 import io.github.emircakmakgil.taskservice.dto.attachment.AttachmentListiningDto;
+import io.github.emircakmakgil.taskservice.dto.attachment.FileDataDto;
 import io.github.emircakmakgil.taskservice.entity.Attachment;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,4 +15,5 @@ public interface AttachmentService {
     void updateFile(UUID id, MultipartFile file, UUID taskId);
     void deleteFile(UUID id);
     Attachment findById(UUID id);
+    FileDataDto downloadFile(UUID id);
 }
