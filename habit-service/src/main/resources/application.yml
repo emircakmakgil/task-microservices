@@ -1,6 +1,6 @@
 spring:
   application:
-    name:"habit-service"
+    name: "habit-service"
   datasource:
     url: "jdbc:postgresql://localhost:5432/habit-service"
     username: postgres
@@ -25,3 +25,5 @@ jwt:
 
   expiration: 600000
   secret: "twCdrIdw0rlhQt1WiSAzplkYspw6QzW09CxMmdMfAzwLAliuHMtoQrp5Xb9xy71nNkc8NFFU82KTpEgw3FyfWihtuPlTLsaQ9tSMrOsANQ"
+
+
