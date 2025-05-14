@@ -1,6 +1,7 @@
 package io.github.emircakmakgil.habitservice.application.habit.command.create;
 
 import an.awesome.pipelinr.Command;
+import io.github.emircakmakgil.habitservice.core.pipelines.auth.AuthenticatedRequest;
 import io.github.emircakmakgil.habitservice.enums.FrequencyType;
 import io.github.emircakmakgil.habitservice.persistence.habit.HabitRepository;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateHabitCommand implements Command<CreateHabitResponse> {
+public class CreateHabitCommand implements Command<CreateHabitResponse> , AuthenticatedRequest {
     private String name;
     private String description;
     private FrequencyType frequencyType;

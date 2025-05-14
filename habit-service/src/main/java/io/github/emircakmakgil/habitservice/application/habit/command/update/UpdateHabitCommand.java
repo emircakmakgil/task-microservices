@@ -1,6 +1,8 @@
 package io.github.emircakmakgil.habitservice.application.habit.command.update;
 
 import an.awesome.pipelinr.Command;
+import io.github.emircakmakgil.habitservice.core.pipelines.auth.AuthenticatedRequest;
+import io.github.emircakmakgil.habitservice.core.pipelines.auth.AuthorizedRequest;
 import io.github.emircakmakgil.habitservice.domain.entity.Habit;
 import io.github.emircakmakgil.habitservice.enums.FrequencyType;
 import io.github.emircakmakgil.habitservice.persistence.habit.HabitRepository;
@@ -10,6 +12,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 @Getter
 @Setter
@@ -24,7 +27,7 @@ public class UpdateHabitCommand implements Command<UpdateHabitResponse>{
 
     @Component
     @RequiredArgsConstructor
-    private static class UpdateHabitCommandHandler implements Command.Handler<UpdateHabitCommand,UpdateHabitResponse>{
+    private static class UpdateHabitCommandHandler implements Command.Handler<UpdateHabitCommand,UpdateHabitResponse>, AuthorizedRequest {
 
         private final HabitRepository habitRepository;
 
@@ -43,6 +46,11 @@ public class UpdateHabitCommand implements Command<UpdateHabitResponse>{
                     ,habit.getUpdatedAt()
             ,habit.getFrequencyType(),
                     habit.getTargetCount());
+        }
+
+        @Override
+        public List<String> getAuthorizedRequest() {
+            return List.of("Admin","User","Habit.Update");
         }
     }
 
